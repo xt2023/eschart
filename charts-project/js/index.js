@@ -88,11 +88,11 @@
 
 //用户数据区域
 (function () {
-    const item={
-        name:'',
-        value:1200,
+    const item = {
+        name: '',
+        value: 1200,
         itemStyle: {
-            color:'#254065'
+            color: '#254065'
         },
         emphasis: {
             disabled: false
@@ -110,8 +110,8 @@
             // (x1,y2) 点到点 (x2,y2) 之间进行渐变
             0, 0, 0, 1,
             [
-                { offset: 0, color: '#00fffb' }, // 0 起始颜色
-                { offset: 1, color: '#0061ce' }  // 1 结束颜色
+                {offset: 0, color: '#00fffb'}, // 0 起始颜色
+                {offset: 1, color: '#0061ce'}  // 1 结束颜色
             ]
         ),
         // 工具提示
@@ -130,11 +130,11 @@
             left: '0%',
             right: '3%',
             bottom: '3%',
-            top:'3%',
+            top: '3%',
             // 是否包含文本
             containLabel: true,
-            show:true,
-            borderColor:'rgba(0, 240, 255, 0.3)'
+            show: true,
+            borderColor: 'rgba(0, 240, 255, 0.3)'
         },
         // 控制x轴
         xAxis: [
@@ -155,9 +155,9 @@
                     color: '#4c9bfd'
                 },
                 // x坐标轴颜色设置
-                axisLine:{
-                    lineStyle:{
-                        color:'rgba(0, 240, 255, 0.3)',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(0, 240, 255, 0.3)',
                         // width:8,  x轴线的粗细
                         // opcity: 0,   如果不想显示x轴线 则改为 0
                     }
@@ -180,9 +180,9 @@
                     color: '#4c9bfd'
                 },
                 // x坐标轴颜色设置
-                axisLine:{
-                    lineStyle:{
-                        color:'rgba(0, 240, 255, 0.3)',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(0, 240, 255, 0.3)',
                         // width:8,  x轴线的粗细
                         // opcity: 0,   如果不想显示x轴线 则改为 0
                     }
@@ -205,7 +205,7 @@
                 // 柱子宽度
                 barWidth: '60%',
                 // 数据
-                data: [2100,1900,1700,1560,1400,item,item,item,900,750,600,480,240]
+                data: [2100, 1900, 1700, 1560, 1400, item, item, item, 900, 750, 600, 480, 240]
             }
         ]
     };
@@ -214,19 +214,19 @@
     myChart.setOption(option);
 })();
 // 订单功能
-(function(){
+(function () {
     // 1. 准备数据
     var data = {
-        day365: { orders: '20,301,987', amount: '99834' },
-        day90: { orders: '301,987', amount: '9834' },
-        day30: { orders: '1,987', amount: '3834' },
-        day1: { orders: '987', amount: '834' }
+        day365: {orders: '20,301,987', amount: '99834'},
+        day90: {orders: '301,987', amount: '9834'},
+        day30: {orders: '1,987', amount: '3834'},
+        day1: {orders: '987', amount: '834'}
     }
     // 获取显示 订单数量 容器
     var $h4Orders = $('.order h4:eq(0)')
     // 获取显示 金额数量 容器
     var $h4Amount = $('.order h4:eq(1)')
-    $('.order').on('click','.filter a',function(){
+    $('.order').on('click', '.filter a', function () {
         // 2. 点击切换激活样式
         $(this).addClass('active').siblings().removeClass('active')
         // 3. 点击切换数据
@@ -237,14 +237,14 @@
     // 4. 开启定时器切换数据
     var index = 0
     var $allTab = $('.order .filter a')
-    setInterval(function(){
-        index ++
+    setInterval(function () {
+        index++
         if (index >= 4) index = 0
         $allTab.eq(index).click()
-    },5000)
+    }, 5000)
 })();
 // 销售统计模块
-(function() {
+(function () {
     var data = {
         year: [
             [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
@@ -316,15 +316,15 @@
             }
         },
         series: [{
-            name:'预期销售额',
+            name: '预期销售额',
             data: data.year[0],
             type: 'line',
             smooth: true,
             itemStyle: {
                 color: '#00f2f1'
             }
-        },{
-            name:'实际销售额',
+        }, {
+            name: '实际销售额',
             data: data.year[1],
             type: 'line',
             smooth: true,
@@ -338,7 +338,7 @@
     // 3. 把配置和数据给实例对象
     myChart.setOption(option);
     // 切换
-    $('.sales').on('click', '.caption a', function(){
+    $('.sales').on('click', '.caption a', function () {
         // 样式
         $(this).addClass('active').siblings().removeClass('active')
         // currData 当前对应的数据
@@ -353,19 +353,19 @@
     })
     var as = $(".sales .caption a");
     var index = 0;
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
         index++;
         if (index >= 4) index = 0;
         as.eq(index).click();
     }, 1000);
     // 鼠标经过sales，关闭定时器，离开开启定时器
     $(".sales").hover(
-        function() {
+        function () {
             clearInterval(timer);
         },
-        function() {
+        function () {
             clearInterval(timer);
-            timer = setInterval(function() {
+            timer = setInterval(function () {
                 index++;
                 if (index >= 4) index = 0;
                 as.eq(index).click();
@@ -373,9 +373,266 @@
         }
     );
     // 当我们浏览器缩放的时候，图表也等比例缩放
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function () {
         // 让我们的图表调用 resize这个方法
         myChart.resize();
     });
 })();
+
+// 雷达区域
+(function () {
+    var myChart = echarts.init(document.querySelector(".radar"));
+    const dataBJ = [
+        [90, 19, 56, 11, 34]
+
+    ];
+
+    const lineStyle = {
+        normal: {
+            color: '#fff',
+            // width: 1
+        }
+    };
+    option = {
+        tooltip: {
+            show: true,
+            // 控制提示框组件的显示位置
+            position: ["30%", "10%"]
+        },
+
+        radar: {
+            indicator: [
+                {name: '机场', max: 100},
+                {name: '商场', max: 100},
+                {name: '火车站', max: 100},
+                {name: '汽车站', max: 100},
+                {name: '地铁', max: 100}
+            ],
+            name: {
+                // 修饰雷达图文本颜色
+                textStyle: {
+                    color: '#4c9bfd'
+                }
+            },
+            radius: '45%',
+            shape: 'circle',
+            splitNumber: 4,
+            axisName: {
+                color: 'rgb(238, 197, 102)'
+            },
+            splitLine: {
+                lineStyle: {
+                    color: 'rgba(255, 255, 255, 0.5)',
+                }
+            },
+            splitArea: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(238, 197, 102, 0.5)'
+                }
+            }
+        },
+        series: [
+            {
+                name: 'Beijing',
+                type: 'radar',
+                lineStyle: lineStyle,
+                data: dataBJ,
+                symbol: 'circle',
+                itemStyle: {
+                    color: '#fff'
+                },
+                label: {
+                    show: true,
+                    color: '#fff',
+                    fontSize: 10
+                },
+
+                areaStyle: {
+                    color: 'rgba(238, 197, 102, 0.6)',
+                },
+
+            },
+
+        ]
+    };
+    myChart.setOption(option);
+    window.addEventListener("resize", function () {
+        // 让我们的图表调用 resize这个方法
+        myChart.resize();
+    });
+})();
+
+//饼形图
+(function () {
+    const myChart = echarts.init(document.querySelector('.geo'))
+    option = {
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                radius: ['130%', '150%'],
+                center: ['48%', '80%'],
+                avoidLabelOverlap: false,
+
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '40',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                startAngle: 180,
+                hoverOffset: 0,
+                data: [
+
+                    {
+                        value: 100,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                // (x1,y2) 点到点 (x2,y2) 之间进行渐变
+                                0,
+                                0,
+                                0,
+                                1,
+                                [
+                                    {offset: 0, color: "#00c9e0"}, // 0 起始颜色
+                                    {offset: 1, color: "#005fc1"} // 1 结束颜色
+                                ]
+                            )
+                        }
+                    },
+                    {value: 100, itemStyle: {color: '#12274d'}},
+                    {
+                        value: 200,
+                        itemStyle: {
+                            color: 'transparent'
+                        }
+                    },
+
+                ]
+            }
+        ]
+    }
+    myChart.setOption(option)
+})();
+
+//热力榜区域
+(function () {
+    const hotData = [
+        {
+            city: '北京',  // 城市
+            sales: '25, 179',  // 销售额
+            flag: true, //  上升还是下降
+            brands: [   //  品牌种类数据
+                {name: '可爱多', num: '9,086', flag: true},
+                {name: '娃哈哈', num: '8,341', flag: true},
+                {name: '喜之郎', num: '7,407', flag: false},
+                {name: '八喜', num: '6,080', flag: false},
+                {name: '小洋人', num: '6,724', flag: false},
+                {name: '好多鱼', num: '2,170', flag: true},
+            ]
+        },
+        {
+            city: '河北',
+            sales: '23,252',
+            flag: false,
+            brands: [
+                {name: '可爱多', num: '3,457', flag: false},
+                {name: '娃哈哈', num: '2,124', flag: true},
+                {name: '喜之郎', num: '8,907', flag: false},
+                {name: '八喜', num: '6,080', flag: true},
+                {name: '小洋人', num: '1,724', flag: false},
+                {name: '好多鱼', num: '1,170', flag: false},
+            ]
+        },
+        {
+            city: '上海',
+            sales: '20,760',
+            flag: true,
+            brands: [
+                {name: '可爱多', num: '2,345', flag: true},
+                {name: '娃哈哈', num: '7,109', flag: true},
+                {name: '喜之郎', num: '3,701', flag: false},
+                {name: '八喜', num: '6,080', flag: false},
+                {name: '小洋人', num: '2,724', flag: false},
+                {name: '好多鱼', num: '2,998', flag: true},
+            ]
+        },
+        {
+            city: '江苏',
+            sales: '23,252',
+            flag: false,
+            brands: [
+                {name: '可爱多', num: '2,156', flag: false},
+                {name: '娃哈哈', num: '2,456', flag: true},
+                {name: '喜之郎', num: '9,737', flag: true},
+                {name: '八喜', num: '2,080', flag: true},
+                {name: '小洋人', num: '8,724', flag: true},
+                {name: '好多鱼', num: '1,770', flag: false},
+            ]
+        },
+        {
+            city: '山东',
+            sales: '20,760',
+            flag: true,
+            brands: [
+                {name: '可爱多', num: '9,567', flag: true},
+                {name: '娃哈哈', num: '2,345', flag: false},
+                {name: '喜之郎', num: '9,037', flag: false},
+                {name: '八喜', num: '1,080', flag: true},
+                {name: '小洋人', num: '4,724', flag: false},
+                {name: '好多鱼', num: '9,999', flag: true},
+            ]
+        }
+    ]
+    let supHTML = ''
+    $.each(hotData, function (index, item) {
+        supHTML += `<li> <span>${item.city}</span><span>${item.sales}<s class=${item.flag ? "icon-up" : "icon-down"}></s></span></li>`
+    })
+    $(".sup").html(supHTML)
+
+    $(".province .sup").on("mouseenter", "li", function () {
+        $(this).addClass("active").siblings().removeClass()
+        console.log(hotData[$(this).index()])
+        let subHTML = "";
+        $.each(hotData[$(this).index()].brands, function (index, item) {
+            subHTML += `<li><span>${item.name}</span><span>${item.num} <s class=${item.flag ? "icon-up" : "icon-down"}></s></span></li>`
+        })
+        $(".sub").html(subHTML)
+    })
+
+    // 所有的LI
+    var index = 0;
+    var timer = setInterval(function() {
+        index++;
+        if (index >= 5) index = 0;
+        // lis.eq(index).mouseenter();
+        render(lis.eq(index));
+    }, 2000);
+
+    $(".province .sup").hover(
+        // 鼠标经过事件
+        function() {
+            clearInterval(timer);
+        },
+        // 鼠标离开事件
+        function() {
+            clearInterval(timer);
+            timer = setInterval(function() {
+                index++;
+                if (index >= 5) index = 0;
+                // lis.eq(index).mouseenter();
+                render(lis.eq(index));
+            }, 2000);
+        }
+    );
+})();
+
+
 
